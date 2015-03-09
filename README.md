@@ -1,9 +1,10 @@
-# NPButtonFlip
+# NPSegmentedControl
 
 ***
 
 This is a simple button with a circle at right, who will animate when changing state.
 
+<img src = "https://raw.githubusercontent.com/neopixl/NPSegmentedControl/master/Documentation/npsepgmentedcontrol.gif" />
 
 ## Features
 
@@ -12,12 +13,12 @@ This is a simple button with a circle at right, who will animate when changing s
 
 ## Installation
 
-Grab the files in `Classes/NPSelectorView` and put it in your
-project.
+Grab the files in `Classes/NPSegmentedControl` and put it in your
+project. 
 
 ## Usage
 
-Instanciate a new NPSelectorView or get it from a Storyboard
+Instanciate a new NPSegmentedControl or get it from a Storyboard
 Configure the parameters:
 ```swift
 selector.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
@@ -37,10 +38,11 @@ selector.setItems(myElements)
 ```
 ## Small Print
 
-### License
-
-`NPSelectorView` is released under the MIT license.
-
 ### Author
 
 [Neopixl](http://www.neopixl.com)
+
+### License
+-------------------------
+
+Copyright 2015 Neopixl S.A. - Apache 2.0 licence. 
