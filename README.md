@@ -2,7 +2,7 @@
 
 ***
 
-This is a simple button with a circle at right, who will animate when changing state.
+This is a simple customizable segmented control.
 
 <img src = "https://raw.githubusercontent.com/neopixl/NPSegmentedControl/master/Documentation/npsepgmentedcontrol.gif" />
 
