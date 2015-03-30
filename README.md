@@ -1,5 +1,7 @@
 # NPSegmentedControl
-
+![Version](https://img.shields.io/cocoapods/v/NPSegmentedControl.svg?style=flat)
+![License](https://img.shields.io/cocoapods/l/NPSegmentedControl.svg?style=flat)
+![Platform](https://img.shields.io/cocoapods/p/NPSegmentedControl.svg?style=flat)
 ***
 
 This is a simple customizable segmented control.
@@ -13,10 +15,44 @@ This is a simple customizable segmented control.
 
 ## Installation
 
-Grab the files in `Classes/NPSegmentedControl` and put it in your
-project. 
+> **Embedded frameworks require a minimum deployment target of iOS 8.**
+>
+> To use NPFlipButton with a project targeting iOS 7, you must include the files in `Classes/NPSegmentedControl` directly in your project.
+>
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
+
+CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate NPSegmentedControl into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'NPSegmentedControl', '~> 1.0.0'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
 
 ## Usage
+
+Import NPSegmentedControl
+```swift
+import NPSegmentedControl
+```
 
 Instanciate a new NPSegmentedControl or get it from a Storyboard
 Configure the parameters:
