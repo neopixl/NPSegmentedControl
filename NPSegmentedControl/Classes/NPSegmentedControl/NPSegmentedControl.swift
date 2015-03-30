@@ -19,7 +19,7 @@ import UIKit
 public class NPSegmentedControl : UIControl {
     private var views = [UIView]()
     private var labels = [UILabel]()
-    var cursor:UIView?
+    public var cursor:UIView?
     {
         didSet{
             if views.count > 0
