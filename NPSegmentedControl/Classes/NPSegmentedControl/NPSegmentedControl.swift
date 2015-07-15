@@ -142,8 +142,8 @@ public class NPSegmentedControl : UIControl {
         self.addGestureRecognizer(tapGestureRecogniser)
     }
     
-    override init() {
-        super.init()
+    init() {
+        super.init(frame: CGRectZero)
         self.initComponents()
     }
     
@@ -225,7 +225,7 @@ public class NPSegmentedControl : UIControl {
             var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view(\(itemHeight))]", options: nil, metrics: nil, views: viewDict)
             view.addConstraints(constraints)
             
-            if let previous = previousView?
+            if let previous = previousView
             {
                 let leftConstraint = NSLayoutConstraint(item:view,
                     attribute:NSLayoutAttribute.Left,
@@ -284,7 +284,7 @@ public class NPSegmentedControl : UIControl {
             }
             previousView = view
         }
-        if let previous = previousView?
+        if let previous = previousView
         {
             let leftConstraint = NSLayoutConstraint(item:previous,
                 attribute:NSLayoutAttribute.Right,
