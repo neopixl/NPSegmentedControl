@@ -16,6 +16,12 @@ limitations under the License.
 
 import UIKit
 
+public enum CursorPosition
+{
+    case Top
+    case Bottom
+}
+
 public class NPSegmentedControl : UIControl {
     private var views = [UIView]()
     private var labels = [UILabel]()
@@ -31,6 +37,17 @@ public class NPSegmentedControl : UIControl {
                 }
             }
         }
+    }
+    
+    public var cursorPosition:CursorPosition = CursorPosition.Bottom
+    {
+        didSet{
+            if views.count > 0
+            {
+                self.setItems(items)
+            }
+        }
+        
     }
     
     private var animationChecks = [Bool]()
@@ -154,6 +171,10 @@ public class NPSegmentedControl : UIControl {
         {
             view.removeFromSuperview()
         }
+        if let cur = cursor
+        {
+            cur.removeFromSuperview()
+        }
         labels.removeAll(keepCapacity: false)
         views.removeAll(keepCapacity: false)
         
@@ -236,15 +257,31 @@ public class NPSegmentedControl : UIControl {
                 self.addConstraint(leftConstraint)
             }
             
-            let topConstraint = NSLayoutConstraint(item:view,
-                attribute:NSLayoutAttribute.Top,
-                relatedBy:NSLayoutRelation.Equal,
-                toItem:self,
-                attribute:NSLayoutAttribute.Top,
-                multiplier:1.0,
-                constant:0)
             
-            self.addConstraint(topConstraint)
+            if(cursorPosition == CursorPosition.Top)
+            {
+                let bottomConstraint = NSLayoutConstraint(item:view,
+                    attribute:NSLayoutAttribute.Bottom,
+                    relatedBy:NSLayoutRelation.Equal,
+                    toItem:self,
+                    attribute:NSLayoutAttribute.Bottom,
+                    multiplier:1.0,
+                    constant:0)
+                
+                self.addConstraint(bottomConstraint)
+            }
+            else
+            {
+                let topConstraint = NSLayoutConstraint(item:view,
+                    attribute:NSLayoutAttribute.Top,
+                    relatedBy:NSLayoutRelation.Equal,
+                    toItem:self,
+                    attribute:NSLayoutAttribute.Top,
+                    multiplier:1.0,
+                    constant:0)
+            
+                self.addConstraint(topConstraint)
+            }
             previousView = view
         }
         if let previous = previousView?
@@ -260,33 +297,46 @@ public class NPSegmentedControl : UIControl {
         }
         if let cur = cursor
         {
-        cur.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.addSubview(cur)
-        
-        let bottomConstraint = NSLayoutConstraint(item:cur,
-            attribute:NSLayoutAttribute.Bottom,
-            relatedBy:NSLayoutRelation.Equal,
-            toItem:self,
-            attribute:NSLayoutAttribute.Bottom,
-            multiplier:1.0,
-            constant:0)
-        self.addConstraint(bottomConstraint)
-        
-        cursorCenterXConstraint = NSLayoutConstraint(item:cur,
-            attribute:NSLayoutAttribute.CenterX,
-            relatedBy:NSLayoutRelation.Equal,
-            toItem:self,
-            attribute:NSLayoutAttribute.CenterX,
-            multiplier:1.0,
-            constant:0)
-        self.addConstraint(cursorCenterXConstraint)
-        
-        var viewDict = [ "cursor" : cur ] as Dictionary<NSObject,AnyObject>
-        
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[cursor(\(cur.frame.height))]", options: nil, metrics: nil, views: viewDict)
-        cur.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[cursor(\(cur.frame.width))]", options: nil, metrics: nil, views: viewDict)
-        cur.addConstraints(constraints)
+            cur.setTranslatesAutoresizingMaskIntoConstraints(false)
+            self.addSubview(cur)
+            if(cursorPosition == CursorPosition.Top)
+            {
+                let topConstraint = NSLayoutConstraint(item:cur,
+                    attribute:NSLayoutAttribute.Top,
+                    relatedBy:NSLayoutRelation.Equal,
+                    toItem:self,
+                    attribute:NSLayoutAttribute.Top,
+                    multiplier:1.0,
+                    constant:0)
+                self.addConstraint(topConstraint)
+            }
+            else
+            {
+                let bottomConstraint = NSLayoutConstraint(item:cur,
+                    attribute:NSLayoutAttribute.Bottom,
+                    relatedBy:NSLayoutRelation.Equal,
+                    toItem:self,
+                    attribute:NSLayoutAttribute.Bottom,
+                    multiplier:1.0,
+                    constant:0)
+                self.addConstraint(bottomConstraint)
+            }
+            
+            cursorCenterXConstraint = NSLayoutConstraint(item:cur,
+                attribute:NSLayoutAttribute.CenterX,
+                relatedBy:NSLayoutRelation.Equal,
+                toItem:self,
+                attribute:NSLayoutAttribute.CenterX,
+                multiplier:1.0,
+                constant:0)
+            self.addConstraint(cursorCenterXConstraint)
+            
+            var viewDict = [ "cursor" : cur ] as Dictionary<NSObject,AnyObject>
+            
+            var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[cursor(\(cur.frame.height))]", options: nil, metrics: nil, views: viewDict)
+            cur.addConstraints(constraints)
+            constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[cursor(\(cur.frame.width))]", options: nil, metrics: nil, views: viewDict)
+            cur.addConstraints(constraints)
         }
         selectCell(currentIndex,animate: false)
     }
