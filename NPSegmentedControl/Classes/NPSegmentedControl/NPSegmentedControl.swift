@@ -38,7 +38,7 @@ public class NPSegmentedControl : UIControl {
             }
         }
     }
-    
+
     public var cursorPosition:CursorPosition = CursorPosition.Bottom
     {
         didSet{
@@ -47,15 +47,15 @@ public class NPSegmentedControl : UIControl {
                 self.setItems(items)
             }
         }
-        
+
     }
-    
+
     private var animationChecks = [Bool]()
-    
+
     private var items:[String]!
-    
+
     private var currentIndex:Int = 0
-    
+
     public var selectedColor:UIColor? = UIColor.lightGrayColor()
     {
         didSet{
@@ -66,7 +66,7 @@ public class NPSegmentedControl : UIControl {
             }
         }
     }
-    
+
     public var selectedTextColor:UIColor?
         {
         didSet{
@@ -77,11 +77,11 @@ public class NPSegmentedControl : UIControl {
             }
         }
     }
-    
+
     public var unselectedColor:UIColor? = UIColor.grayColor()
         {
         didSet{
-            
+
             for index in 0..<views.count
             {
                 if(index != self.currentIndex)
@@ -92,7 +92,7 @@ public class NPSegmentedControl : UIControl {
             }
         }
     }
-    
+
     public var unselectedTextColor:UIColor?
         {
         didSet{
@@ -106,7 +106,7 @@ public class NPSegmentedControl : UIControl {
             }
         }
     }
-    
+
     public var selectedFont:UIFont?
         {
         didSet{
@@ -117,7 +117,7 @@ public class NPSegmentedControl : UIControl {
             }
         }
     }
-    
+
     public var unselectedFont:UIFont?
         {
         didSet{
@@ -131,42 +131,37 @@ public class NPSegmentedControl : UIControl {
             }
         }
     }
-    
+
     private var cursorCenterXConstraint:NSLayoutConstraint!
-    
+
     private var tapGestureRecogniser:UITapGestureRecognizer!
-    
+
     private func initComponents()
     {
         tapGestureRecogniser = UITapGestureRecognizer(target: self, action: "didTap:")
         self.addGestureRecognizer(tapGestureRecogniser)
     }
-    
-    init() {
-        super.init(frame: CGRectZero)
-        self.initComponents()
-    }
-    
-    required public init(coder aDecoder: NSCoder) {
+
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.initComponents()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.initComponents()
     }
-    
+
     public func setItems(items:[String])
     {
         self.items = items
         var previousView:UIView?
-        
+
         for lab in labels
         {
             lab.removeFromSuperview()
         }
-        
+
         for view in views
         {
             view.removeFromSuperview()
@@ -177,7 +172,7 @@ public class NPSegmentedControl : UIControl {
         }
         labels.removeAll(keepCapacity: false)
         views.removeAll(keepCapacity: false)
-        
+
         for i in 0..<items.count
         {
             var view = UIView()
@@ -193,13 +188,13 @@ public class NPSegmentedControl : UIControl {
             }
             view.addSubview(label)
             labels.append(label)
-            label.setTranslatesAutoresizingMaskIntoConstraints(false)
+            label.translatesAutoresizingMaskIntoConstraints = false
             var itemHeight = self.frame.height
             if let cur = self.cursor
             {
                 itemHeight -= cur.frame.height
             }
-            
+
             let centerXConstraint = NSLayoutConstraint(item:label,
                 attribute:NSLayoutAttribute.CenterX,
                 relatedBy:NSLayoutRelation.Equal,
@@ -208,7 +203,7 @@ public class NPSegmentedControl : UIControl {
                 multiplier:1,
                 constant:0)
             view.addConstraint(centerXConstraint)
-            
+
             let centerYConstraint = NSLayoutConstraint(item:label,
                 attribute:NSLayoutAttribute.CenterY,
                 relatedBy:NSLayoutRelation.Equal,
@@ -217,14 +212,14 @@ public class NPSegmentedControl : UIControl {
                 multiplier:1,
                 constant:0)
             view.addConstraint(centerYConstraint)
-            
-            
-            view.setTranslatesAutoresizingMaskIntoConstraints(false)
-            var viewDict = [ "view" : view ] as Dictionary<NSObject,AnyObject>
-            
-            var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view(\(itemHeight))]", options: nil, metrics: nil, views: viewDict)
+
+
+            view.translatesAutoresizingMaskIntoConstraints = false
+            var viewDict = [ "view" : view ]
+
+            var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view(\(itemHeight))]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
             view.addConstraints(constraints)
-            
+
             if let previous = previousView
             {
                 let leftConstraint = NSLayoutConstraint(item:view,
@@ -235,7 +230,7 @@ public class NPSegmentedControl : UIControl {
                     multiplier:1,
                     constant:0)
                 self.addConstraint(leftConstraint)
-                
+
                 let widthConstraint = NSLayoutConstraint(item:view,
                     attribute:NSLayoutAttribute.Width,
                     relatedBy:NSLayoutRelation.Equal,
@@ -256,8 +251,8 @@ public class NPSegmentedControl : UIControl {
                     constant:0)
                 self.addConstraint(leftConstraint)
             }
-            
-            
+
+
             if(cursorPosition == CursorPosition.Top)
             {
                 let bottomConstraint = NSLayoutConstraint(item:view,
@@ -267,7 +262,7 @@ public class NPSegmentedControl : UIControl {
                     attribute:NSLayoutAttribute.Bottom,
                     multiplier:1.0,
                     constant:0)
-                
+
                 self.addConstraint(bottomConstraint)
             }
             else
@@ -279,7 +274,7 @@ public class NPSegmentedControl : UIControl {
                     attribute:NSLayoutAttribute.Top,
                     multiplier:1.0,
                     constant:0)
-            
+
                 self.addConstraint(topConstraint)
             }
             previousView = view
@@ -297,52 +292,39 @@ public class NPSegmentedControl : UIControl {
         }
         if let cur = cursor
         {
-            cur.setTranslatesAutoresizingMaskIntoConstraints(false)
-            self.addSubview(cur)
-            if(cursorPosition == CursorPosition.Top)
-            {
-                let topConstraint = NSLayoutConstraint(item:cur,
-                    attribute:NSLayoutAttribute.Top,
-                    relatedBy:NSLayoutRelation.Equal,
-                    toItem:self,
-                    attribute:NSLayoutAttribute.Top,
-                    multiplier:1.0,
-                    constant:0)
-                self.addConstraint(topConstraint)
-            }
-            else
-            {
-                let bottomConstraint = NSLayoutConstraint(item:cur,
-                    attribute:NSLayoutAttribute.Bottom,
-                    relatedBy:NSLayoutRelation.Equal,
-                    toItem:self,
-                    attribute:NSLayoutAttribute.Bottom,
-                    multiplier:1.0,
-                    constant:0)
-                self.addConstraint(bottomConstraint)
-            }
-            
-            cursorCenterXConstraint = NSLayoutConstraint(item:cur,
-                attribute:NSLayoutAttribute.CenterX,
-                relatedBy:NSLayoutRelation.Equal,
-                toItem:self,
-                attribute:NSLayoutAttribute.CenterX,
-                multiplier:1.0,
-                constant:0)
-            self.addConstraint(cursorCenterXConstraint)
-            
-            var viewDict = [ "cursor" : cur ] as Dictionary<NSObject,AnyObject>
-            
-            var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[cursor(\(cur.frame.height))]", options: nil, metrics: nil, views: viewDict)
-            cur.addConstraints(constraints)
-            constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[cursor(\(cur.frame.width))]", options: nil, metrics: nil, views: viewDict)
-            cur.addConstraints(constraints)
+        cur.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(cur)
+
+        let bottomConstraint = NSLayoutConstraint(item:cur,
+            attribute:NSLayoutAttribute.Bottom,
+            relatedBy:NSLayoutRelation.Equal,
+            toItem:self,
+            attribute:NSLayoutAttribute.Bottom,
+            multiplier:1.0,
+            constant:0)
+        self.addConstraint(bottomConstraint)
+
+        cursorCenterXConstraint = NSLayoutConstraint(item:cur,
+            attribute:NSLayoutAttribute.CenterX,
+            relatedBy:NSLayoutRelation.Equal,
+            toItem:self,
+            attribute:NSLayoutAttribute.CenterX,
+            multiplier:1.0,
+            constant:0)
+        self.addConstraint(cursorCenterXConstraint)
+
+        var viewDict = [ "cursor" : cur ]
+
+        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[cursor(\(cur.frame.height))]", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: viewDict)
+        cur.addConstraints(constraints)
+        constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[cursor(\(cur.frame.width))]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
+        cur.addConstraints(constraints)
         }
         selectCell(currentIndex,animate: false)
     }
-    
+
     //MARK: select cell at index
-    
+
     public func selectCell(index:Int, animate:Bool)
     {
         var newView = views[index]
@@ -356,8 +338,8 @@ public class NPSegmentedControl : UIControl {
         }
         if (duration == 0 || index != currentIndex) && index < items.count
         {
-            
-            UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: .CurveEaseInOut | .AllowUserInteraction, animations:
+
+            UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 10, options: [UIViewAnimationOptions.CurveEaseInOut, UIViewAnimationOptions.AllowUserInteraction], animations:
                 {
                     self.animationChecks.append(true)
                     oldView.backgroundColor = self.unselectedColor
@@ -392,15 +374,15 @@ public class NPSegmentedControl : UIControl {
                                 constant:0)
                             self.addConstraint(self.cursorCenterXConstraint)
                         }
-                        
+
                     }
                     self.animationChecks.removeLast()
-                    
+
             })
             currentIndex = index
         }
     }
-    
+
     internal func didTap(recognizer:UITapGestureRecognizer)
     {
         if recognizer.state == UIGestureRecognizerState.Ended
@@ -411,13 +393,13 @@ public class NPSegmentedControl : UIControl {
             self.sendActionsForControlEvents(UIControlEvents.ValueChanged)
         }
     }
-    
+
     //MARK: getIndex from point
-    
+
     private func indexFromPoint(point:CGPoint) -> Int
     {
         var position = 0
-        
+
         for pos in 0..<views.count
         {
             let view = views[pos]
@@ -428,7 +410,7 @@ public class NPSegmentedControl : UIControl {
         }
         return 0
     }
-    
+
     //MARK: selectedIndex
     public func selectedIndex() -> Int
     {
