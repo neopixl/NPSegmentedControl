@@ -61,7 +61,7 @@ public class NPSegmentedControl : UIControl {
         didSet{
             if self.currentIndex <= views.count - 1 && self.currentIndex >= 0
             {
-                var view = views[self.currentIndex]
+                let view = views[self.currentIndex]
                 view.backgroundColor = self.selectedColor
             }
         }
@@ -72,7 +72,7 @@ public class NPSegmentedControl : UIControl {
         didSet{
             if self.currentIndex <= views.count - 1 && self.currentIndex >= 0
             {
-                var lab = labels[self.currentIndex]
+                let lab = labels[self.currentIndex]
                 lab.textColor = self.selectedTextColor
             }
         }
@@ -86,7 +86,7 @@ public class NPSegmentedControl : UIControl {
             {
                 if(index != self.currentIndex)
                 {
-                    var view = views[index]
+                    let view = views[index]
                     view.backgroundColor = self.unselectedColor
                 }
             }
@@ -100,7 +100,7 @@ public class NPSegmentedControl : UIControl {
             {
                 if(index != self.currentIndex)
                 {
-                    var lab = labels[index]
+                    let lab = labels[index]
                     lab.textColor = self.unselectedTextColor
                 }
             }
@@ -112,7 +112,7 @@ public class NPSegmentedControl : UIControl {
         didSet{
             if self.currentIndex <= views.count - 1 && self.currentIndex >= 0
             {
-                var lab = labels[self.currentIndex]
+                let lab = labels[self.currentIndex]
                 lab.font = self.selectedFont
             }
         }
@@ -125,7 +125,7 @@ public class NPSegmentedControl : UIControl {
             {
                 if(index != self.currentIndex)
                 {
-                    var lab = labels[index]
+                    let lab = labels[index]
                     lab.font = self.unselectedFont
                 }
             }
@@ -175,11 +175,11 @@ public class NPSegmentedControl : UIControl {
 
         for i in 0..<items.count
         {
-            var view = UIView()
+            let view = UIView()
             view.backgroundColor = unselectedColor
             self.addSubview(view)
             views.append(view)
-            var label = UILabel()
+            let label = UILabel()
             label.text = items[i]
             label.textColor = unselectedTextColor
             if let font = unselectedFont
@@ -215,9 +215,9 @@ public class NPSegmentedControl : UIControl {
 
 
             view.translatesAutoresizingMaskIntoConstraints = false
-            var viewDict = [ "view" : view ]
+            let viewDict = [ "view" : view ]
 
-            var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view(\(itemHeight))]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
+            let constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view(\(itemHeight))]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
             view.addConstraints(constraints)
 
             if let previous = previousView
@@ -313,7 +313,7 @@ public class NPSegmentedControl : UIControl {
             constant:0)
         self.addConstraint(cursorCenterXConstraint)
 
-        var viewDict = [ "cursor" : cur ]
+        let viewDict = [ "cursor" : cur ]
 
         var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[cursor(\(cur.frame.height))]", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: viewDict)
         cur.addConstraints(constraints)
@@ -327,10 +327,10 @@ public class NPSegmentedControl : UIControl {
 
     public func selectCell(index:Int, animate:Bool)
     {
-        var newView = views[index]
-        var newLabel = labels[index]
-        var oldView = views[currentIndex]
-        var oldLabel = labels[currentIndex]
+        let newView = views[index]
+        let newLabel = labels[index]
+        let oldView = views[currentIndex]
+        let oldLabel = labels[currentIndex]
         var duration:NSTimeInterval = 0
         if animate
         {
@@ -387,8 +387,8 @@ public class NPSegmentedControl : UIControl {
     {
         if recognizer.state == UIGestureRecognizerState.Ended
         {
-            var currentPoint = recognizer.locationInView(self)
-            var index = indexFromPoint(currentPoint)
+            let currentPoint = recognizer.locationInView(self)
+            let index = indexFromPoint(currentPoint)
             selectCell(index, animate: true)
             self.sendActionsForControlEvents(UIControlEvents.ValueChanged)
         }
@@ -398,8 +398,6 @@ public class NPSegmentedControl : UIControl {
 
     private func indexFromPoint(point:CGPoint) -> Int
     {
-        var position = 0
-
         for pos in 0..<views.count
         {
             let view = views[pos]
