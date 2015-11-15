@@ -192,6 +192,8 @@
 		EF5463241AAD9040004025BB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Neopixl;
 				TargetAttributes = {
@@ -447,6 +449,7 @@
 				EF54634D1AAD9040004025BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EF54634E1AAD9040004025BB /* Build configuration list for PBXNativeTarget "NPSegmentedControlTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +458,7 @@
 				EF5463501AAD9040004025BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
