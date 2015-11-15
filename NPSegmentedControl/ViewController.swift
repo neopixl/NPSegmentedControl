@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var myElements = ["First","Second","Third","Fourth"]
+        let myElements = ["First","Second","Third","Fourth"]
         selector.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
         selector.cursor = UIImageView(image: UIImage(named: "tabindicator"))
         
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         selector.unselectedColor = UIColor(red: 10/255, green: 137/255, blue: 169/255, alpha: 0.8)
         selector.selectedTextColor = UIColor(white: 1, alpha: 1)
         selector.selectedColor = UIColor(red: 10/255, green: 137/255, blue: 169/255, alpha: 1)
-        selector.cursorPosition = .Top
+        selector.cursorPosition = CursorPosition.Bottom
         
         selector.setItems(myElements)
         labelIndex.text = "Index : \(selector.selectedIndex())"

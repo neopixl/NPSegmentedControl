@@ -15,8 +15,6 @@
 		EF5463481AAD9040004025BB /* NPSegmentedControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5463471AAD9040004025BB /* NPSegmentedControlTests.swift */; };
 		EF5463561AAD91D1004025BB /* NPSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5463551AAD91D1004025BB /* NPSegmentedControl.swift */; };
 		EF54635B1AAD952F004025BB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = EF5463571AAD952F004025BB /* README.md */; };
-		EF54635C1AAD952F004025BB /* tabindicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5463591AAD952F004025BB /* tabindicator.png */; };
-		EF54635D1AAD952F004025BB /* tabindicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF54635A1AAD952F004025BB /* tabindicator@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +40,6 @@
 		EF5463471AAD9040004025BB /* NPSegmentedControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPSegmentedControlTests.swift; sourceTree = "<group>"; };
 		EF5463551AAD91D1004025BB /* NPSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPSegmentedControl.swift; sourceTree = "<group>"; };
 		EF5463571AAD952F004025BB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		EF5463591AAD952F004025BB /* tabindicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabindicator.png; sourceTree = "<group>"; };
-		EF54635A1AAD952F004025BB /* tabindicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabindicator@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				EF5463571AAD952F004025BB /* README.md */,
-				EF5463581AAD952F004025BB /* Ressources */,
 				EF54632E1AAD9040004025BB /* NPSegmentedControl */,
 				EF5463441AAD9040004025BB /* NPSegmentedControlTests */,
 				EF54632D1AAD9040004025BB /* Products */,
@@ -139,15 +134,6 @@
 			path = NPSegmentedControl;
 			sourceTree = "<group>";
 		};
-		EF5463581AAD952F004025BB /* Ressources */ = {
-			isa = PBXGroup;
-			children = (
-				EF5463591AAD952F004025BB /* tabindicator.png */,
-				EF54635A1AAD952F004025BB /* tabindicator@2x.png */,
-			);
-			path = Ressources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -194,7 +180,7 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Neopixl;
 				TargetAttributes = {
 					EF54632B1AAD9040004025BB = {
@@ -231,10 +217,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF5463371AAD9040004025BB /* Main.storyboard in Resources */,
-				EF54635D1AAD952F004025BB /* tabindicator@2x.png in Resources */,
 				EF54633C1AAD9040004025BB /* LaunchScreen.xib in Resources */,
 				EF5463391AAD9040004025BB /* Images.xcassets in Resources */,
-				EF54635C1AAD952F004025BB /* tabindicator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +301,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -381,6 +366,7 @@
 				INFOPLIST_FILE = NPSegmentedControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.neopixl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -392,6 +378,7 @@
 				INFOPLIST_FILE = NPSegmentedControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.neopixl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -410,6 +397,7 @@
 				);
 				INFOPLIST_FILE = NPSegmentedControlTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.neopixl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NPSegmentedControl.app/NPSegmentedControl";
 			};
@@ -425,6 +413,7 @@
 				);
 				INFOPLIST_FILE = NPSegmentedControlTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.neopixl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NPSegmentedControl.app/NPSegmentedControl";
 			};
