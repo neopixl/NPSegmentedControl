@@ -37,8 +37,17 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
+pod 'NPSegmentedControl'
+```
+
+
+***Swift 2 Support*** (only with version 1.0.1) :
+
+```ruby
 pod 'NPSegmentedControl', '~> 1.0.1'
 ```
+
+
 
 Then, run the following command:
 
@@ -70,7 +79,7 @@ selector.selectedColor = UIColor(red: 10/255, green: 137/255, blue: 169/255, alp
 Set the array of String that you want to be used for the selector
 ```swift
 var myElements = ["First","Second","Third","Fourth"]
-selector.setItems(myElements)
+selector.setItems(items: myElements)
 ```
 ## Small Print
 
